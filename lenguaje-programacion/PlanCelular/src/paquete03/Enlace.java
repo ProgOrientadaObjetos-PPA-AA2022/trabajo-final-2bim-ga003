@@ -301,12 +301,10 @@ public class Enlace {
                 lista4.add(planPagomme);
 
             }
-
             obtenerConexion().close();
         } catch (SQLException e) {
             System.out.println("Exception: insertarPlanMinutosMegasEconomico");
             System.out.println(e.getMessage());
-
         }
         return lista4;
     }

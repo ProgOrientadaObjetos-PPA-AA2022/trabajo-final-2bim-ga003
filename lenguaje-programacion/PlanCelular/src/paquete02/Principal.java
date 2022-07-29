@@ -63,10 +63,10 @@ public class Principal {
                         numM = leer.nextInt();
                         System.out.println("Ingrese el Costo por Mega:");
                         costom = leer.nextDouble();
-                        System.out.println("Ingrese La Tarifa:");
+                        System.out.println("Ingrese La Tarifa Base:");
                         int tarifa = leer.nextInt();
                         pagoM = new PlanPostPagoMegas(nombre, cedula, ciudad,
-                                marca, modelo, num, numM, costom, 12.0);
+                                marca, modelo, num, numM, costom, tarifa);
                         pagoM.calcularPagoMensual();
 
                         c.insertarPlanMegas(pagoM);
