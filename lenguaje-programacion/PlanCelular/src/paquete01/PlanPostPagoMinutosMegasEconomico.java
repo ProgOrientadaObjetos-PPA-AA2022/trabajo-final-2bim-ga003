@@ -68,7 +68,7 @@ public class PlanPostPagoMinutosMegasEconomico extends PlanCelular {
 
     @Override
     public void calcularPagoMensual() {
-        double subtotal = (minutos *costoMinuto)
+        double subtotal = (minutos * costoMinuto)
                 + (megasGB * costoGB);
         pagoM = subtotal - (((porcentajeD)/100) * subtotal);
     }
@@ -80,17 +80,19 @@ public class PlanPostPagoMinutosMegasEconomico extends PlanCelular {
 
     @Override
     public String toString() {
-        String cadena = String.format("\nPlan PostPago MinutosMegas Economico\n"
-                + super.toString() + "\nReporte\n"
-                + "\tMinutos: %d\n"
-                + "\tCosto minuto : %.2f\n"
-                + "\tNumero de Megas (GB): %d\n"
-                + "\tCosto del GB: %.2f\n"
-                + "\tPorcentage Descuento: %.2f\n"
-                + "\tPago mensual: %.2f\n",
-                obtenerMinutos(), obtenerCostoMinuto(),
+        String cadena = String.format("------------------------------\n%s"
+                + "Minutos: %d\n"
+                + "Costo minuto : %.2f\n"
+                + "Numero de Megas en GB: %d\n"
+                + "Costo de Megas en GB: %.2f\n"
+                + "Porcentage Descuento: %.2f\n"
+                + "Pago mensual: %.2f\n",
+                super.toString(),
+                obtenerMinutos(),
+                obtenerCostoMinuto(),
                 obtenerNumeroMegasGB(),
-                obtenerCostoGB(), obtenerPDescuento() * 100,
+                obtenerCostoGB(), 
+                obtenerPDescuento(),
                 obtenerPagoMensual());
         return cadena;
     }

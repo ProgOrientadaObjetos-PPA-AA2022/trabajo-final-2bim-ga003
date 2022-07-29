@@ -16,121 +16,143 @@ import paquete03.Enlace;
 public class Principal {
 
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-
+        Scanner leer = new Scanner(System.in);
+        PlanPostPagoMegas pagoM;
+        PlanPostPagoMinutos pagoMi;
+        PlanPostPagoMinutosMegas pagoMinMe;
+        PlanPostPagoMinutosMegasEconomico pagoEconomico;
         Enlace c = new Enlace();
-        entrada.useLocale(Locale.US);
+        leer.useLocale(Locale.US);
         int opc;
-        String continuar;
+        int numM = 0;
+        double costom = 0;
+        int min = 0;
+        double cost = 0;
+        String bandera;
 
         do {
+            System.out.println("[1] Ingresar un Plan de Megas");
+            System.out.println("[2] Ingresar un Plan de Minutos");
+            System.out.println("[3] Ingresar un Plan de Megas y Minutos");
+            System.out.println("[4] Ingresar un Plan de  Minutos y Megas Económico");
+            System.out.println("[5] Salir del Programa");
+            opc = leer.nextInt();
 
-            System.out.println("\t------Plan Celular------\n"
-                    + "Ingrese (1) para un Plan de Megas\n"
-                    + "Ingrese (2) para un Plan de Minutos\n"
-                    + "Ingrese (3) para un Plan de Megas y Minutos\n"
-                    + "Ingrese (4) para un Plan de  Minutos y Megas Económico\n");
-            opc = entrada.nextInt();
-
-            entrada.nextLine();
-            if (opc < 5 && opc >0) {
+            leer.nextLine();
+            if (opc <= 5 && opc > 0) {
+                if (opc == 5) {
+                    System.out.println("Ha terminado de insertar planes.");
+                    break;
+                }
                 System.out.println("Ingrese el nombre del Propietario:");
-                String nom = entrada.nextLine();
+                String nombre = leer.nextLine();
                 System.out.println("Ingrese el número de Cédula del Propietario:");
-                String ced = entrada.nextLine();
+                String cedula = leer.nextLine();
                 System.out.println("Ingrese la Ciudad del Propietario:");
-                String ciu = entrada.nextLine();
+                String ciudad = leer.nextLine();
                 System.out.println("Ingrese la Marca del celular:");
-                String mar = entrada.nextLine();
+                String marca = leer.nextLine();
                 System.out.println("Ingrese el Modelo del celular:");
-                String mod = entrada.nextLine();
+                String modelo = leer.nextLine();
                 System.out.println("Ingrese el Número de telefono:");
-                String nume = entrada.nextLine();
+                String num = leer.nextLine();
 
                 switch (opc) {
-                    case 1 -> {
-                        System.out.println("Ingrese el Número de Megas (Gb):");
-                        int giga = entrada.nextInt();
+                    case 1:
+                        System.out.println("Ingrese el Número de Megas en GB:");
+                        numM = leer.nextInt();
                         System.out.println("Ingrese el Costo por Mega:");
-                        double gicos = entrada.nextDouble();
-                        PlanPostPagoMegas me = new PlanPostPagoMegas(nom, ced, ciu,
-                                mar, mod, nume, giga, gicos, 12.0);
-                        me.calcularPagoMensual();
+                        costom = leer.nextDouble();
+                        System.out.println("Ingrese La Tarifa:");
+                        int tarifa = leer.nextInt();
+                        pagoM = new PlanPostPagoMegas(nombre, cedula, ciudad,
+                                marca, modelo, num, numM, costom, 12.0);
+                        pagoM.calcularPagoMensual();
 
-                        c.insertarPlanMegas(me);
-                    }
-                    case 2 -> {
+                        c.insertarPlanMegas(pagoM);
+                        break;
+
+                    case 2:
                         System.out.println("Ingrese el Número de Minutos nacionales:");
-                        int mina = entrada.nextInt();
+                        int minNa = leer.nextInt();
                         System.out.println("Ingrese el Costo por Minuto nacional:");
-                        double cosMn = entrada.nextDouble();
+                        double costMin = leer.nextDouble();
                         System.out.println("Ingrese el Número de Minutos internacionales:");
-                        int mini = entrada.nextInt();
+                        int minInter = leer.nextInt();
                         System.out.println("Ingrese el Costo por Minuto internacional:");
-                        double cosMi = entrada.nextDouble();
-                        PlanPostPagoMinutos mi = new PlanPostPagoMinutos(nom, ced,
-                                ciu, mar, mod, nume, mina, cosMn, mini, cosMi);
-                        mi.calcularPagoMensual();
+                        double costMinIn = leer.nextDouble();
+                        pagoMi = new PlanPostPagoMinutos(nombre, cedula,
+                                ciudad, marca, modelo, num, minNa, costMin, minInter, costMinIn);
+                        pagoMi.calcularPagoMensual();
 
-                        c.insertarPlanMinutos(mi);
-                    }
-                    case 3 -> {
+                        c.insertarPlanMinutos(pagoMi);
+                        break;
+                    case 3:
                         System.out.println("Ingrese el Número de minutos:");
-                        int min = entrada.nextInt();
+                        min = leer.nextInt();
                         System.out.println("Ingrese el Costo por minuto:");
-                        double cost = entrada.nextDouble();
-                        System.out.println("Ingrese el Número de Megas (Gb):");
-                        int giga = entrada.nextInt();
+                        cost = leer.nextDouble();
+                        System.out.println("Ingrese el Número de Megas en GB:");
+                        numM = leer.nextInt();
                         System.out.println("Ingrese el Costo por Mega:");
-                        double gicos = entrada.nextDouble();
-                        PlanPostPagoMinutosMegas mm = new PlanPostPagoMinutosMegas(nom, ced,
-                                ciu, mar, mod, nume, min, cost, giga, gicos);
-                        mm.calcularPagoMensual();
+                        costom = leer.nextDouble();
+                        pagoMinMe = new PlanPostPagoMinutosMegas(nombre, cedula,
+                                ciudad, marca, modelo, num, min, cost, numM, costom);
+                        pagoMinMe.calcularPagoMensual();
 
-                        c.insertarPlanMinutosMegas(mm);
-                    }
-                    case 4 -> {
-                        System.out.println("Ingrese el Número de minutos:");
-                        int min = entrada.nextInt();
-                        System.out.println("Ingrese el Costo por minuto:");
-                        double cost = entrada.nextDouble();
-                        System.out.println("Ingrese el Número de Megas (Gb):");
-                        int giga = entrada.nextInt();
-                        System.out.println("Ingrese el Costo por Mega:");
-                        double gicos = entrada.nextDouble();
-                        PlanPostPagoMinutosMegasEconomico mmE = new PlanPostPagoMinutosMegasEconomico(nom, ced,
-                                ciu, mar, mod, nume, min, cost, giga, gicos, 10);
-                        mmE.calcularPagoMensual();
+                        c.insertarPlanMinutosMegas(pagoMinMe);
+                        break;
+                    case 4:
+                        System.out.println("Ingrese el Número de minutos: ");
+                        min = leer.nextInt();
+                        System.out.println("Ingrese el Costo por minuto: ");
+                        cost = leer.nextDouble();
+                        System.out.println("Ingrese el Número de Megas en GB: ");
+                        numM = leer.nextInt();
+                        System.out.println("Ingrese el Costo por Mega: ");
+                        costom = leer.nextDouble();
+                        System.out.println("Ingrese el porcentaje de descuento: ");
+                        int porcentaje = leer.nextInt();
+                        pagoEconomico = new PlanPostPagoMinutosMegasEconomico(nombre, cedula,
+                                ciudad, marca, modelo, num, min, cost, numM, costom, porcentaje);
+                        pagoEconomico.calcularPagoMensual();
 
-                        c.insertarPlanMinutosMegasEc(mmE);
-                    }
+                        c.insertarEconomicoPlanMinutosMegas(pagoEconomico);
+
+                        break;
+                    default:
+                        break;
 
                 }
-            }else{
+                leer.nextLine();
+            } else {
                 System.out.println("Numero fuera de rango");
-                entrada.nextLine();
             }
-            
-            System.out.print("¿Desea ingresar otro Plan Celular?: ");
-            
-            continuar = entrada.nextLine();
 
-        } while (continuar.toUpperCase().equals("S"));
+            System.out.println("-----------------------------------");
+            System.out.println("[s] ingresar mas planes");
+            System.out.println("[n] salir del Programa");
 
-        for (int i = 0; i < c.obtenerDataPlanMegas().size(); i++) {
-            System.out.printf("%s", c.obtenerDataPlanMegas().get(i));
+            bandera = leer.nextLine();
+
+        } while (bandera.toUpperCase().equals("S"));
+        
+        
+        System.out.println("------------Plan Megas-----------------------");
+        for (int i = 0; i < c.obtenerPlanMegas().size(); i++) {
+            System.out.printf("%s", c.obtenerPlanMegas().get(i));
         }
-
-        for (int i = 0; i < c.obtenerDataPlanMinutos().size(); i++) {
-            System.out.printf("%s", c.obtenerDataPlanMinutos().get(i));
+        System.out.println("------------Plan Minutos-----------------------");
+        for (int i = 0; i < c.obtenerPlanMinutos().size(); i++) {
+            System.out.printf("%s", c.obtenerPlanMinutos().get(i));
         }
-
-        for (int i = 0; i < c.obtenerDataPlanMinutosMegas().size(); i++) {
-            System.out.printf("%s", c.obtenerDataPlanMinutosMegas().get(i));
+        System.out.println("------------Plan Minutos y Megas-----------------------");
+        for (int i = 0; i < c.obtenerPlanMinutosMegas().size(); i++) {
+            System.out.printf("%s", c.obtenerPlanMinutosMegas().get(i));
         }
-
-        for (int i = 0; i < c.obtenerDataPlanMinutosMegasEconomico().size(); i++) {
-            System.out.printf("%s", c.obtenerDataPlanMinutosMegasEconomico().get(i));
+        System.out.println("------------Plan Economico de Megas y Minutos-----------------------");
+        for (int i = 0; i < c.obtenerPlanEconomicoMinutosMegas().size(); i++) {
+            System.out.printf("%s", c.obtenerPlanEconomicoMinutosMegas().get(i));
         }
 
     }

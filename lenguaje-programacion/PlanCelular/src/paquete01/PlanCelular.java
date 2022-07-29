@@ -73,18 +73,18 @@ public abstract class PlanCelular {
 
     @Override
     public String toString() {
-        String cadena = String.format("--------------------\n"
-                + "Propietario\n"
-                + "\tNombres del Propietario: %s\n"
-                + "\tCedula del Propietario: %s\n"
-                + "\tCiudad del Propietario: %s\n"
-                + "Celular\n"
-                + "\tMarca del Celular: %s\n"
-                + "\tModelo del Celular: %s\n"
-                + "\tNumero del Celular: %s\n",
-                obtenerNombresPropietario(), obtenerCedulaPropietario(),
-                obtenerCiudadPropietario(), obtenerMarcaCelular(),
-                obtenerModeloCelular(), obtenerNumeroCelular());
+        String cadena = String.format("Nombres del Propietario: %s\n"
+                + "Ciudad del Propietario: %s\n"
+                + "Cedula del Propietario: %s\n"
+                + "Marca del Celular: %s\n"
+                + "Modelo: %s\n"
+                + "Numero: %s\n",
+                obtenerNombresPropietario(),
+                obtenerCiudadPropietario(),
+                obtenerCedulaPropietario(), 
+                obtenerMarcaCelular(),
+                obtenerModeloCelular(), 
+                obtenerNumeroCelular());
 
         return cadena;
     }

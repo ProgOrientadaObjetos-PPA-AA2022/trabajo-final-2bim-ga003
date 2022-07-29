@@ -53,14 +53,15 @@ public class PlanPostPagoMegas extends PlanCelular {
 
     @Override
     public String toString() {
-        String cadena = String.format("\nPlan PostPago Megas\n"
-                + super.toString() + "\nReporte\n"
-                + "\tNumero de Megas (GB): %d\n"
-                + "\tCosto del GB: %.2f\n"
-                + "\tTarifa base: %.2f\n"
-                + "\tPago mensual: %.2f\n",
-                obtenerNumeroMegasGB(), obtenerCostoGB(),
+        String cadena = String.format("------------------------------\n%s"
+                + "Tarifa base: %.2f\n"
+                + "Numero de Megas En GB: %d\n"
+                + "Costo del GB: %.2f\n"
+                + "Pago mensual: %.2f\n",
+                super.toString(),
                 obtenerTarifaBase(),
+                obtenerNumeroMegasGB(), 
+                obtenerCostoGB(),
                 obtenerPagoMensual());
         return cadena;
     }
