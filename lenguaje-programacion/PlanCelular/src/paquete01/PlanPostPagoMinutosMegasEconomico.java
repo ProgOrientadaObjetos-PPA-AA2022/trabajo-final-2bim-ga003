@@ -68,7 +68,7 @@ public class PlanPostPagoMinutosMegasEconomico extends PlanCelular {
 
     @Override
     public void calcularPagoMensual() {
-        double subtotal = (minutos * costoMinuto)
+        double subtotal = (minutos *costoMinuto)
                 + (megasGB * costoGB);
         pagoM = subtotal - (((porcentajeD)/100) * subtotal);
     }
