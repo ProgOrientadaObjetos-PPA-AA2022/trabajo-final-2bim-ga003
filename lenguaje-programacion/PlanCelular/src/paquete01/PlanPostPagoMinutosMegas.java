@@ -11,9 +11,9 @@ package paquete01;
 public class PlanPostPagoMinutosMegas extends PlanCelular {
 
     private int minutos;
-    private double costoMinuto;
     private int megasGB;
     private double costoGB;
+    private double costoMinuto;
 
     public PlanPostPagoMinutosMegas(String nom, String c, String cpr, String mcE,
             String mC, String nC, int nM, double cm, int nmG, double cG) {
@@ -61,7 +61,6 @@ public class PlanPostPagoMinutosMegas extends PlanCelular {
         pagoM = (minutos * costoMinuto)
                 + (megasGB * costoGB);
     }
-
 
     @Override
     public String toString() {

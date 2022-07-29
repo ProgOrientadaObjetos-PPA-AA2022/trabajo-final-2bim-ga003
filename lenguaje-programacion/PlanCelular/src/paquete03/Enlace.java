@@ -24,7 +24,7 @@ public class Enlace {
 
         try {
             // db parameters  
-            String url = "jdbc:sqlite:bd/base01.db";
+            String url = "jdbc:sqlite:bd/PlanCelular.db";
             // create a connection to the database  
             conn = DriverManager.getConnection(url);
             // System.out.println(conn.isClosed());
@@ -47,9 +47,9 @@ public class Enlace {
             Statement statement = obtenerConexion().createStatement();
             planm.calcularPagoMensual();
             String data = String.format("INSERT INTO PlanPostPagoMinutos "
-                    + "(nombresPropietario,"
-                    + "cedulaPropietario,ciudadPropietario,marcaCelular,"
-                    + "modeloCelular,numeroCelular,minutosNacionales,"
+                    + "(nombrePropietario,"
+                    + "cedulaPropietario,ciudad,marca,"
+                    + "modelo,numero,minutosNacionales,"
                     + "costoMinutoNacional,minutosInternacionales,"
                     + "costoMinutoInternacional,pagoMensual) "
                     + "values ('%s', '%s', '%s', '%s', '%s', '%s', %d, %s,"
@@ -87,10 +87,10 @@ public class Enlace {
                 PlanPostPagoMinutos planm = new PlanPostPagoMinutos(
                         rs.getString("nombresPropietario"),
                         rs.getString("cedulaPropietario"),
-                        rs.getString("ciudadPropietario"),
-                        rs.getString("marcaCelular"),
-                        rs.getString("modeloCelular"),
-                        rs.getString("numeroCelular"),
+                        rs.getString("ciudad"),
+                        rs.getString("marca"),
+                        rs.getString("modelo"),
+                        rs.getString("numero"),
                         rs.getInt("minutosNacionales"),
                         rs.getDouble("costoMinutoNacional"),
                         rs.getInt("minutosInternacionales"),
@@ -117,8 +117,8 @@ public class Enlace {
             planme.calcularPagoMensual();
             String data = String.format("INSERT INTO PlanPostPagoMegas "
                     + "(nombresPropietario,"
-                    + "cedulaPropietario,ciudadPropietario,marcaCelular,"
-                    + "modeloCelular,numeroCelular,numeroMegasGB,costoGB,"
+                    + "cedulaPropietario,ciudad,marca,"
+                    + "modelo,numero,numeroMegasEnGB,costoDeGB,"
                     + "tarifaBase,pagoMensual) "
                     + "values ('%s', '%s', '%s', '%s', '%s', '%s', %d, %s,"
                     + " %s, %s)",
@@ -153,14 +153,14 @@ public class Enlace {
             while (rs.next()) {
                 PlanPostPagoMegas planme = new PlanPostPagoMegas(
                         rs.getString("nombrePropietario"),
-                        rs.getString("cedula"),
+                        rs.getString("cedulaPropietario"),
                         rs.getString("ciudad"),
                         rs.getString("marca"),
                         rs.getString("modelo"),
                         rs.getString("numero"),
-                        rs.getInt("megasGB"),
-                        rs.getDouble("costoGB"),
-                        rs.getDouble("tarifa"));
+                        rs.getInt("numeroMegasEnGB"),
+                        rs.getDouble("costoDeGB"),
+                        rs.getDouble("tarifaBase"));
                 planme.calcularPagoMensual();
                 lista2.add(planme);
             }
@@ -288,7 +288,7 @@ public class Enlace {
 
             ResultSet rs = statement.executeQuery(data);
             while (rs.next()) {
-                PlanPostPagoMinutosMegasEconomico planmme = new PlanPostPagoMinutosMegasEconomico(
+                PlanPostPagoMinutosMegasEconomico planPagomme = new PlanPostPagoMinutosMegasEconomico(
                         rs.getString("nombresPropietario"),
                         rs.getString("cedulaPropietario"),
                         rs.getString("ciudadPropietario"),
@@ -298,9 +298,9 @@ public class Enlace {
                         rs.getInt("minutos"),
                         rs.getDouble("costoMinuto"),
                         rs.getInt("numeroMegasGB"),
-                        rs.getDouble("costoGB"), rs.getDouble("pDescuento") * 100);
-                planmme.calcularPagoMensual();
-                lista4.add(planmme);
+                        rs.getDouble("costoGB"), rs.getDouble("pDescuento"));
+                planPagomme.calcularPagoMensual();
+                lista4.add(planPagomme);
 
             }
 
