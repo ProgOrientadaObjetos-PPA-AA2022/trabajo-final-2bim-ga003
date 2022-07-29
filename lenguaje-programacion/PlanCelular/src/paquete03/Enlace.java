@@ -40,12 +40,12 @@ public class Enlace {
         return conn;
     }
 
-    public void insertarPlanMinutos(PlanPostPagoMinutos planm) {
+    public void insertarPlanMinutos(PlanPostPagoMinutos c) {
 
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            planm.calcularPagoMensual();
+            c.calcularPagoMensual();
             String data = String.format("INSERT INTO PlanPostPagoMinutos "
                     + "(nombrePropietario,"
                     + "cedulaPropietario,ciudad,marca,"
@@ -54,17 +54,17 @@ public class Enlace {
                     + "costoMinutoInternacional,pagoMensual) "
                     + "values ('%s', '%s', '%s', '%s', '%s', '%s', %d, %s,"
                     + "%d, %s, %s)",
-                    planm.obtenerNombresPropietario(),
-                    planm.obtenerCedulaPropietario(),
-                    planm.obtenerCiudadPropietario(),
-                    planm.obtenerMarcaCelular(),
-                    planm.obtenerModeloCelular(),
-                    planm.obtenerNumeroCelular(),
-                    planm.obtenerMinutosNacionales(),
-                    planm.obtenerCostoMinutoNacional(),
-                    planm.obtenerMinutosInternacionales(),
-                    planm.obtenerCostoMinutoInternacional(),
-                    planm.obtenerPagoMensual());
+                    c.obtenerNombresPropietario(),
+                    c.obtenerCedulaPropietario(),
+                    c.obtenerCiudadPropietario(),
+                    c.obtenerMarcaCelular(),
+                    c.obtenerModeloCelular(),
+                    c.obtenerNumeroCelular(),
+                    c.obtenerMinutosNacionales(),
+                    c.obtenerCostoMinutoNacional(),
+                    c.obtenerMinutosInternacionales(),
+                    c.obtenerCostoMinutoInternacional(),
+                    c.obtenerPagoMensual());
             System.out.println("\n");
             statement.executeUpdate(data);
             obtenerConexion().close();
@@ -109,29 +109,29 @@ public class Enlace {
         return lista1;
     }
 
-    public void insertarPlanMegas(PlanPostPagoMegas planme) {
+    public void insertarPlanMegas(PlanPostPagoMegas c) {
 
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            planme.calcularPagoMensual();
+            c.calcularPagoMensual();
             String data = String.format("INSERT INTO PlanPostPagoMegas "
-                    + "(nombresPropietario,"
+                    + "(nombrePropietario,"
                     + "cedulaPropietario,ciudad,marca,"
                     + "modelo,numero,numeroMegasEnGB,costoDeGB,"
                     + "tarifaBase,pagoMensual) "
                     + "values ('%s', '%s', '%s', '%s', '%s', '%s', %d, %s,"
                     + " %s, %s)",
-                    planme.obtenerNombresPropietario(),
-                    planme.obtenerCedulaPropietario(),
-                    planme.obtenerCiudadPropietario(),
-                    planme.obtenerMarcaCelular(),
-                    planme.obtenerModeloCelular(),
-                    planme.obtenerNumeroCelular(),
-                    planme.obtenerNumeroMegasGB(),
-                    planme.obtenerCostoGB(),
-                    planme.obtenerTarifaBase(),
-                    planme.obtenerPagoMensual());
+                    c.obtenerNombresPropietario(),
+                    c.obtenerCedulaPropietario(),
+                    c.obtenerCiudadPropietario(),
+                    c.obtenerMarcaCelular(),
+                    c.obtenerModeloCelular(),
+                    c.obtenerNumeroCelular(),
+                    c.obtenerNumeroMegasGB(),
+                    c.obtenerCostoGB(),
+                    c.obtenerTarifaBase(),
+                    c.obtenerPagoMensual());
             System.out.println("\n");
             statement.executeUpdate(data);
             obtenerConexion().close();
@@ -174,31 +174,31 @@ public class Enlace {
         return lista2;
     }
 
-    public void insertarPlanMinutosMegas(PlanPostPagoMinutosMegas planmm) {
+    public void insertarPlanMinutosMegas(PlanPostPagoMinutosMegas c) {
 
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            planmm.calcularPagoMensual();
+            c.calcularPagoMensual();
             String data = String.format("INSERT INTO PlanPostPagoMinutosMegas "
-                    + "(nombresPropietario,"
+                    + "(nombrePropietario,"
                     + "cedulaPropietario,ciudadPropietario,marcaCelular,"
                     + "modeloCelular,numeroCelular,minutos,"
                     + "costoMinuto,numeroMegasGB,"
                     + "costoGB,pagoMensual) "
                     + "values ('%s', '%s', '%s', '%s', '%s', '%s', %d, %s,"
                     + "%d, %s, %s)",
-                    planmm.obtenerNombresPropietario(),
-                    planmm.obtenerCedulaPropietario(),
-                    planmm.obtenerCiudadPropietario(),
-                    planmm.obtenerMarcaCelular(),
-                    planmm.obtenerModeloCelular(),
-                    planmm.obtenerNumeroCelular(),
-                    planmm.obtenerMinutos(),
-                    planmm.obtenerCostoMinuto(),
-                    planmm.obtenerNumeroMegasGB(),
-                    planmm.obtenerCostoGB(),
-                    planmm.obtenerPagoMensual());
+                    c.obtenerNombresPropietario(),
+                    c.obtenerCedulaPropietario(),
+                    c.obtenerCiudadPropietario(),
+                    c.obtenerMarcaCelular(),
+                    c.obtenerModeloCelular(),
+                    c.obtenerNumeroCelular(),
+                    c.obtenerMinutos(),
+                    c.obtenerCostoMinuto(),
+                    c.obtenerNumeroMegasGB(),
+                    c.obtenerCostoGB(),
+                    c.obtenerPagoMensual());
             System.out.println("\n");
             statement.executeUpdate(data);
             obtenerConexion().close();
@@ -221,14 +221,14 @@ public class Enlace {
                 PlanPostPagoMinutosMegas planmm = new PlanPostPagoMinutosMegas(
                         rs.getString("nombresPropietario"),
                         rs.getString("cedulaPropietario"),
-                        rs.getString("ciudadPropietario"),
-                        rs.getString("marcaCelular"),
-                        rs.getString("modeloCelular"),
-                        rs.getString("numeroCelular"),
+                        rs.getString("ciudad"),
+                        rs.getString("marca"),
+                        rs.getString("modelo"),
+                        rs.getString("numero"),
                         rs.getInt("minutos"),
-                        rs.getDouble("costoMinuto"),
-                        rs.getInt("numeroMegasGB"),
-                        rs.getDouble("costoGB"));
+                        rs.getDouble("costoMinutos"),
+                        rs.getInt("megasGB"),
+                        rs.getDouble("costoMegasGB"));
                 planmm.calcularPagoMensual();
                 lista3.add(planmm);
 
@@ -243,32 +243,32 @@ public class Enlace {
         return lista3;
     }
 
-    public void insertarPlanMinutosMegasEc(PlanPostPagoMinutosMegasEconomico planmme) {
+    public void insertarPlanMinutosMegasEc(PlanPostPagoMinutosMegasEconomico c) {
 
         try {
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-
+            c.calcularPagoMensual();
             String data = String.format("INSERT INTO PlanPostPagoMinutosMegasEconomico "
-                    + "(nombresPropietario,"
-                    + "cedulaPropietario,ciudadPropietario,marcaCelular,"
-                    + "modeloCelular,numeroCelular,minutos,"
-                    + "costoMinuto,numeroMegasGB,"
-                    + "costoGB,pDescuento,pagoMensual) "
+                    + "(nombrePropietario,"
+                    + "cedulaPropietario,ciudad,marca,"
+                    + "modelo,numero,minutos,"
+                    + "costoMinutos,megasGB,"
+                    + "costoGB,porcentajeDescuento,pagoMensual) "
                     + "values ('%s', '%s', '%s', '%s', '%s', '%s', %d, %s,"
                     + "%d, %s, %s, %s)",
-                    planmme.obtenerNombresPropietario(),
-                    planmme.obtenerCedulaPropietario(),
-                    planmme.obtenerCiudadPropietario(),
-                    planmme.obtenerMarcaCelular(),
-                    planmme.obtenerModeloCelular(),
-                    planmme.obtenerNumeroCelular(),
-                    planmme.obtenerMinutos(),
-                    planmme.obtenerCostoMinuto(),
-                    planmme.obtenerNumeroMegasGB(),
-                    planmme.obtenerCostoGB(),
-                    planmme.obtenerPDescuento(),
-                    planmme.obtenerPagoMensual());
+                    c.obtenerNombresPropietario(),
+                    c.obtenerCedulaPropietario(),
+                    c.obtenerCiudadPropietario(),
+                    c.obtenerMarcaCelular(),
+                    c.obtenerModeloCelular(),
+                    c.obtenerNumeroCelular(),
+                    c.obtenerMinutos(),
+                    c.obtenerCostoMinuto(),
+                    c.obtenerNumeroMegasGB(),
+                    c.obtenerCostoGB(),
+                    c.obtenerPDescuento(),
+                    c.obtenerPagoMensual());
             System.out.println("\n");
             statement.executeUpdate(data);
             obtenerConexion().close();
@@ -291,14 +291,14 @@ public class Enlace {
                 PlanPostPagoMinutosMegasEconomico planPagomme = new PlanPostPagoMinutosMegasEconomico(
                         rs.getString("nombresPropietario"),
                         rs.getString("cedulaPropietario"),
-                        rs.getString("ciudadPropietario"),
-                        rs.getString("marcaCelular"),
-                        rs.getString("modeloCelular"),
-                        rs.getString("numeroCelular"),
+                        rs.getString("ciudad"),
+                        rs.getString("marca"),
+                        rs.getString("modelo"),
+                        rs.getString("numero"),
                         rs.getInt("minutos"),
                         rs.getDouble("costoMinuto"),
-                        rs.getInt("numeroMegasGB"),
-                        rs.getDouble("costoGB"), rs.getDouble("pDescuento"));
+                        rs.getInt("megasGB"),
+                        rs.getDouble("costoGB"), rs.getDouble("porcentajeDescuento"));
                 planPagomme.calcularPagoMensual();
                 lista4.add(planPagomme);
 
